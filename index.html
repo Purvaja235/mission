@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My 90-Day Mission</title>
 <style>
-:root{--bg:#f4f6f9;--c:#fff;--b:#dde2ea;--t:#171c26;--m:#667085;--ac:#2563eb;--full:#2da44e;--part:#e3b341;--miss:#e5534b;--fut:#e6eaf0;--hot:#ea6a1f;--sh:0 1px 2px rgba(16,24,40,.06),0 6px 18px rgba(16,24,40,.05)}
-[data-theme=dark]{--bg:#0d1117;--c:#161b22;--b:#2d333b;--t:#e6edf3;--m:#8b949e;--ac:#58a6ff;--full:#3fb950;--part:#d29922;--miss:#f85149;--fut:#21262d;--hot:#f0883e;--sh:none}
-[data-theme=pink]{--bg:#fff0f5;--c:#fffafc;--b:#f3cfdd;--t:#3b1f2b;--m:#8a5a70;--ac:#d6336c;--full:#2f9e6b;--part:#e8a317;--miss:#e5484d;--fut:#f8dfe8;--hot:#e8590c}
-[data-theme=sky]{--bg:#eaf6fd;--c:#fbfeff;--b:#c5e3f4;--t:#12324a;--m:#4f7590;--ac:#0284c7;--full:#2a9d5c;--part:#e0a100;--miss:#e5484d;--fut:#d8ecf8;--hot:#ea6a1f}
+:root{--bg:#f6f7fb;--c:#fff;--c2:#f0f2f8;--b:#e2e6f0;--t:#0f172a;--m:#5b657a;--ac:#4f46e5;--full:#16a34a;--part:#e0a106;--miss:#dc2626;--fut:#e9edf5;--hot:#ea580c;--sh:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.06)}
+[data-theme=dark]{--bg:#0b0f1a;--c:#131a2a;--c2:#1a2338;--b:#26314a;--t:#e8ecf5;--m:#93a0ba;--ac:#818cf8;--full:#34d399;--part:#fbbf24;--miss:#f87171;--fut:#1e2740;--hot:#fb923c;--sh:0 1px 0 rgba(255,255,255,.03),0 10px 30px rgba(0,0,0,.35)}
+[data-theme=pink]{--bg:#fdf2f7;--c:#fff;--c2:#fbe8f0;--b:#f1cfe0;--t:#3a1830;--m:#83506d;--ac:#c02669;--full:#15803d;--part:#e0a106;--miss:#dc2626;--fut:#f6dce8;--hot:#ea580c;--sh:0 1px 2px rgba(120,30,80,.06),0 8px 24px rgba(120,30,80,.08)}
+[data-theme=sky]{--bg:#eef6fc;--c:#fff;--c2:#e3f0fa;--b:#c9dff0;--t:#0c2a43;--m:#4b6b85;--ac:#0369a1;--full:#15803d;--part:#e0a106;--miss:#dc2626;--fut:#d9eaf6;--hot:#ea580c;--sh:0 1px 2px rgba(3,80,140,.06),0 8px 24px rgba(3,80,140,.08)}
 .tsel{width:auto;min-height:44px;padding:8px 10px}
 [hidden]{display:none!important}
 .bk{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;border-color:var(--part)}
@@ -98,13 +98,85 @@ dialog label{display:grid;gap:4px;font-size:14px;color:var(--m);font-weight:600}
 .tk .a{display:flex;gap:8px;flex-wrap:wrap}.tk .a button{flex:1;min-width:120px}.e2{text-align:center;padding:18px;border:2px dashed var(--b);border-radius:14px}
 @media(max-width:720px){.c4{grid-template-columns:1fr 1fr}.tn{grid-template-columns:1fr}.hw{grid-template-columns:1fr;gap:20px}.hero{padding:18px}.sr{grid-template-columns:1fr 1fr}.hs2 b{font-size:28px}.top{grid-template-columns:1fr 1fr}.mg,.tg,.set{grid-template-columns:1fr}.top .hot b{font-size:48px}.cal{gap:4px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* ===== PREMIUM LAYER: tokens, cards, buttons, sections (presentation only) ===== */
+:root{--r:18px;--surface:var(--c);--surface-2:var(--c2);--border:var(--b);--text:var(--t);--muted:var(--m);--primary:var(--ac);--success:var(--full);--warning:var(--part);--danger:var(--miss);--accent:var(--hot);--shadow:var(--sh);--radius:var(--r)}
+html,body{overflow-x:clip}body{font-feature-settings:"tnum" 1;-webkit-font-smoothing:antialiased;background:radial-gradient(900px 420px at 85% -80px,color-mix(in srgb,var(--ac) 12%,transparent),transparent),var(--bg)}
+main{max-width:1200px;gap:20px;padding:20px 16px 90px}
+.card{border-radius:var(--r);padding:22px;transition:border-color .2s,box-shadow .2s,transform .2s}.card:hover{border-color:color-mix(in srgb,var(--ac) 30%,var(--b))}
+.card>h2,.th h2,#th{font-size:13px;letter-spacing:.09em;color:var(--m);margin-bottom:14px}
+dialog h2,.empty h2{font-size:20px;letter-spacing:0;color:var(--t)}
+h3{font-weight:700}
+button{border-radius:12px;font-weight:600;transition:transform .12s,background .2s,border-color .2s,box-shadow .2s}button:active{transform:scale(.97)}
+button:hover{background:var(--c2)}.pri:hover{filter:brightness(1.08);background:var(--ac)}.dng:hover{background:color-mix(in srgb,var(--miss) 12%,var(--c))}
+.pri{background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 65%,var(--full)));border-color:transparent;box-shadow:0 4px 14px color-mix(in srgb,var(--ac) 35%,transparent)}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 25%,transparent)}
+input,select,textarea{border-radius:12px}
+/* header */
+.hd{background:var(--c);border:1px solid var(--b);border-radius:22px;padding:18px 22px;box-shadow:var(--sh);align-items:center}
+.hd h1{font-size:clamp(22px,4vw,30px);font-weight:800}.hr{display:flex;flex-direction:column;align-items:flex-end;gap:8px}.hr .dt{margin:0;color:var(--m);font-size:14px}
+.mn strong{font-size:14px}.tsel{border-radius:12px}
+/* hero */
+.hero{background:radial-gradient(900px 360px at 0% 0%,color-mix(in srgb,var(--ac) 16%,transparent),transparent),var(--c);border-radius:26px;padding:30px}
+.rt,.arc{stroke-width:12}.rc b{font-weight:800;letter-spacing:-.03em}
+.hs2>div,.sr>div{background:var(--c2);border-color:var(--b);border-radius:16px}.hs2 .left{background:color-mix(in srgb,var(--hot) 10%,var(--c));border:1px solid color-mix(in srgb,var(--hot) 55%,var(--b))}
+.badge{background:var(--c2);letter-spacing:.03em}.fin{border-radius:16px}
+/* today's progress */
+.grp{grid-column:1/-1;font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--m);margin:6px 0 -4px}
+.fc{background:var(--c2);border-color:transparent;border-radius:16px}.fc .st input,.fc input[type=number]{background:var(--c)}
+.q button{background:var(--c)}.rb{border-radius:14px}
+.save{border-radius:16px;border:0;background:linear-gradient(135deg,var(--full),color-mix(in srgb,var(--full) 55%,var(--ac)));box-shadow:0 8px 24px color-mix(in srgb,var(--full) 30%,transparent)}
+/* tasks */
+.tk{background:var(--c2);border-color:var(--b);border-left-width:5px;border-radius:14px;transition:transform .15s,box-shadow .15s}.tk:hover{transform:translateY(-1px);box-shadow:var(--sh)}
+.tk.dn{opacity:.65}.chips span{background:var(--c);border:1px solid var(--b)}.chips .od{background:var(--miss);color:#fff;border-color:var(--miss)}
+.mc{background:var(--c2);border-color:transparent;border-radius:16px}.tflt>input{border-radius:12px}
+.e2{border-radius:16px;background:var(--c2)}
+/* calendars */
+.cell{border-radius:10px;transition:transform .12s,box-shadow .12s}.cell:hover:not(:disabled){box-shadow:0 4px 12px rgba(0,0,0,.25)}.cell.now{border-color:var(--t);box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--ac)}
+.fg .cell{border-radius:8px}.leg{font-size:12px}
+/* analytics + history */
+.h1{background:var(--c2);border-color:var(--b);border-left-width:5px;border-radius:14px}.sg>div{background:var(--c2);border-color:transparent;border-radius:14px}
+.big{margin-bottom:14px}.big b{font-size:36px;font-variant-numeric:tabular-nums}.pb{height:12px}
+.wt th{color:var(--m);font-size:12px;letter-spacing:.06em}
+.bk{background:color-mix(in srgb,var(--part) 12%,var(--c));border-color:color-mix(in srgb,var(--part) 55%,var(--b))}
+/* milestones */
+.bd{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}.bd>p{grid-column:1/-1}
+.ach{display:flex;gap:12px;align-items:center;padding:12px 14px;border:1px solid var(--b);border-radius:14px;background:var(--c2)}.ach b{display:block;font-size:14px}.ach small{font-size:11px;letter-spacing:.08em;font-weight:700;color:var(--m)}.ach .ai{font-size:22px}
+.ach.on{border-color:color-mix(in srgb,var(--full) 60%,var(--b));background:color-mix(in srgb,var(--full) 10%,var(--c))}.ach.on small{color:var(--full)}.ach.lk{opacity:.6}
+.quote{border-radius:var(--r);padding:26px;background:linear-gradient(135deg,color-mix(in srgb,var(--ac) 85%,#000),color-mix(in srgb,var(--full) 55%,#0b1020));font-size:15px}.quote p{margin:6px 0}
+/* settings groups + sync card */
+.sgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.grpc{border:1px solid var(--b);background:var(--c2);border-radius:16px;padding:16px;display:grid;gap:8px;align-content:start}
+.grpc label{font-size:13px;color:var(--m);font-weight:600;margin-top:4px}.grpc .btns{display:flex;gap:8px;flex-wrap:wrap}.grpc .btns button{flex:1;min-width:130px}
+.grpc.danger{border-color:color-mix(in srgb,var(--miss) 45%,var(--b))}.grpc .sy{display:flex;align-items:center;gap:8px}
+.sd{width:10px;height:10px;border-radius:50%;background:var(--m);display:inline-block;flex:none}.sd.ok{background:var(--full)}.sd.busy{background:var(--part)}.sd.err{background:var(--miss)}
+/* dialogs + toast */
+dialog{border-radius:22px;box-shadow:0 24px 80px rgba(0,0,0,.45);animation:pop .18s ease-out}dialog::backdrop{backdrop-filter:blur(4px)}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.98)}}
+#toast{border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.3)}
+@media(max-width:720px){main{padding:12px 10px 90px}.card{padding:16px}.hd{padding:14px}.hr{align-items:flex-start;width:100%}.sgrid{grid-template-columns:1fr}
+ .hero{padding:18px}input,select,textarea{font-size:16px}.save{position:sticky;bottom:12px;z-index:5}.tk .a button{min-height:46px}.mn{width:100%}.mn strong{flex:1}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* ===== TODAY'S PROGRESS: one equal 2x2 module grid (presentation only) ===== */
+:root{--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px}
+.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);align-items:stretch}
+.tgrp{display:flex;flex-direction:column;gap:var(--space-4);min-height:250px;padding:var(--space-5);border:1px solid var(--b);border-radius:var(--radius);background:var(--surface-2)}
+.tgh{display:flex;align-items:center;gap:var(--space-3)}.tgh h3{margin:0;font-size:13px;letter-spacing:.1em}.tgh small{display:block;color:var(--m);font-size:12px;line-height:1.3}
+.tgi{width:40px;height:40px;flex:none;display:grid;place-items:center;font-size:20px;border-radius:12px;background:var(--c);border:1px solid var(--b)}
+.tgb{flex:1;display:grid;grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr;gap:var(--space-3)}.tgb.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mt{display:flex;flex-direction:column;gap:var(--space-2);min-width:0;padding:var(--space-3) var(--space-4);background:var(--c);border:1px solid var(--b);border-radius:14px}.mt.w{justify-content:center}
+.ml{font-size:13px;font-weight:700;color:var(--m)}.mt .ck{min-height:44px;font-size:14px}.mt label.l{margin:0}.mt input[type=number]{font-size:22px;font-weight:700;background:var(--bg)}
+.mt .st{align-items:center}.mt .st input{font-size:22px}.mt .st span{color:var(--m);font-size:13px}.mt .q{margin-top:0;flex-wrap:nowrap;gap:var(--space-2)}.mt .q button{min-width:0;padding:8px 2px}.mt label.l{font-size:13px;font-weight:600;color:var(--m)}.mt .rb{width:52px}
+.tn1{display:flex}.tn1 textarea{flex:1;min-height:150px;background:var(--c);font-size:15px;line-height:1.5}
+dialog .tgrid{grid-template-columns:1fr}dialog .tgrp{min-height:0}
+@media(max-width:699px){.tgrid{grid-template-columns:1fr}.tgrp{min-height:0;padding:var(--space-4)}}
+@media(max-width:420px){.tgb.c2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <main>
 <header class="hd">
- <div><h1 id="mt">🚀 MY 90-DAY MISSION</h1><p class="sub">Small progress every day.</p><p id="today" class="dt"></p></div>
- <nav class="mn" aria-label="Month navigation"><button id="pm">← Previous Month</button><strong id="mlab" aria-live="polite"></strong><button id="nm">Next Month →</button><select id="th3" class="tsel" aria-label="Theme"><option value="light">Light</option><option value="dark">Dark</option><option value="pink">Light Pink</option><option value="sky">Sky Blue</option><option value="system">System</option></select></nav>
+ <div><h1 id="mt">🚀 MY 90-DAY MISSION</h1><p class="sub">One focused day at a time.</p></div>
+ <div class="hr"><p id="today" class="dt"></p>
+ <nav class="mn" aria-label="Month navigation"><button id="pm">← Previous Month</button><strong id="mlab" aria-live="polite"></strong><button id="nm">Next Month →</button><select id="th3" class="tsel" aria-label="Theme"><option value="light">Light</option><option value="dark">Dark</option><option value="pink">Light Pink</option><option value="sky">Sky Blue</option><option value="system">System</option></select></nav></div>
 </header>
 <div id="empty" class="card empty" hidden><h2 id="mt2">🚀 YOUR 90-DAY MISSION STARTS HERE</h2><p>Record one small action today.</p><button id="go" class="pri">START TODAY</button></div>
 <div id="bk" class="card bk" hidden></div>
@@ -134,12 +206,13 @@ dialog label{display:grid;gap:4px;font-size:14px;color:var(--m);font-weight:600}
  <div class="fl" id="fl"></div><div id="hs"></div></section>
 <section class="card"><h2>🏆 MILESTONES</h2><div id="ml" class="bd"></div></section>
 <section class="card quote"><p>DON'T GIVE UP.<br>ADJUST, BUT DON'T QUIT.</p><p>ONE BAD DAY IS NOT<br>A FAILED LIFE.</p><p>KEEP GOING.<br>YOUR TIME WILL COME.</p></section>
-<section class="card"><h2>⚙️ SETTINGS</h2><div class="set">
- <div><label for="sd" class="sub">Mission start date</label><input type="date" id="sd"></div>
- <div><label for="th2" class="sub">Theme</label><select id="th2"><option value="light">Light</option><option value="dark">Dark</option><option value="pink">Light Pink</option><option value="sky">Sky Blue</option><option value="system">System</option></select></div>
- <div><label for="sdays" class="sub">Mission length (days)</label><input type="number" id="sdays" min="7" max="365" step="1"></div><div><label for="sname" class="sub">Mission name (optional)</label><input type="text" id="sname" maxlength="40" placeholder="MY 90-DAY MISSION"></div><div class="row"><button id="ex">📤 Export Data</button><button id="im">📥 Import Data</button><input type="file" id="imp" accept=".json,application/json" hidden><button id="rp">📄 Mission Report</button><button id="clr" class="dng">🗑️ Clear All Data</button></div>
- <div class="row" style="align-items:center"><strong>☁️ Cloud sync</strong><button id="sin" class="pri" hidden>Sign in with Google</button><button id="sout" hidden>Sign out</button></div><p id="sync" class="sub" style="grid-column:1/-1"></p>
- <p id="lbt" class="sub" style="grid-column:1/-1"></p><p class="sub" style="grid-column:1/-1">Monthly targets are set inside the Monthly Targets section. Data lives only in this browser — export a backup now and then.</p></div></section>
+<section class="card" aria-labelledby="sth"><h2 id="sth">⚙️ SETTINGS</h2><div class="sgrid">
+ <div class="grpc"><h3>🎯 Mission</h3><label for="sd">Mission start date</label><input type="date" id="sd"><label for="sdays">Mission length (days)</label><input type="number" id="sdays" min="7" max="365" step="1"><label for="sname">Mission name (optional)</label><input type="text" id="sname" maxlength="40" placeholder="MY 90-DAY MISSION"></div>
+ <div class="grpc"><h3>🎨 Appearance</h3><label for="th2">Theme</label><select id="th2"><option value="light">Light</option><option value="dark">Dark</option><option value="pink">Light Pink</option><option value="sky">Sky Blue</option><option value="system">System</option></select><p class="sub">You can also switch themes from the header.</p></div>
+ <div class="grpc"><h3>💾 Data &amp; Backup</h3><p id="lbt" class="sub"></p><div class="btns"><button id="ex" class="pri">📤 Export Data</button><button id="im">📥 Import Data</button><input type="file" id="imp" accept=".json,application/json" hidden><button id="rp">📄 Mission Report</button></div><p class="sub">☁️ When cloud sync is enabled, your tracker is synced to your Google account. Export a manual JSON backup periodically for extra protection.</p></div>
+ <div class="grpc"><h3>☁️ Cloud Sync</h3><div class="sy"><span id="sdot" class="sd"></span><strong id="sst">Not connected</strong></div><p class="sub" id="sdesc">Your data is currently stored locally on this device.</p><div class="btns"><button id="sin" class="pri" hidden>Sign in with Google</button><button id="sout" hidden>Sign out</button></div><p id="sync" class="sub" role="status" aria-live="polite"></p></div>
+ <div class="grpc danger" style="grid-column:1/-1"><h3>⚠️ Danger zone</h3><p class="sub">Erases all records, tasks and settings. With cloud sync on, the cleared state also syncs to your account. Export a backup first.</p><div class="btns"><button id="clr" class="dng">🗑️ Clear All Data</button></div></div>
+</div></section>
 </main>
 <dialog id="dlg"><div id="dbody"></div></dialog>
 <dialog id="cf"><p id="cfm"></p><div class="ar"><button id="cfno">Cancel</button><button id="cfok" class="dng"></button></div></dialog>
@@ -185,14 +258,19 @@ const me=()=>Object.keys(db.entries).filter(k=>k.startsWith(vm)).sort().map(k=>[
 const sum=(a,f)=>a.reduce((s,[,e])=>s+f(e),0);
 const mlab=m=>{const[y,n]=m.split('-').map(Number);return new Date(y,n-1,1).toLocaleDateString('en-US',{month:'long',year:'numeric'})};
 /* form */
-const F=p=>`<div class="tg f" data-p="${p}">
-<div class="fc"><h3>📩 Job applications</h3><div class="st"><button type="button" class="rb" data-a="apps:-1" aria-label="Decrease applications">−</button><input id="${p}-apps" type="number" inputmode="numeric" min="0" step="1" placeholder="0" aria-label="Applications today"><button type="button" class="rb" data-a="apps:1" aria-label="Increase applications">+</button></div><div class="q">${[10,20,30,40,50].map(n=>`<button type="button" data-a="apps:${n}">+${n}</button>`).join('')}</div></div>
-<div class="fc"><h3>💻 DSA</h3><label class="ck"><input type="checkbox" id="${p}-dsaC"> DSA completed today</label><label class="l" for="${p}-dsaN">Problems solved</label><input id="${p}-dsaN" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></div>
-<div class="fc"><h3>☕ Java</h3><label class="ck"><input type="checkbox" id="${p}-javaC"> Java completed today</label><label class="l" for="${p}-javaH">Study hours</label><input id="${p}-javaH" type="number" inputmode="decimal" min="0" step="0.5" placeholder="0"></div>
-<div class="fc"><h3>🏃 Exercise</h3><label class="ck"><input type="checkbox" id="${p}-exC"> Exercise completed today</label><label class="l" for="${p}-steps">Steps (optional)</label><input id="${p}-steps" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></div>
-<div class="fc"><h3>🔥 Calories</h3><div class="st"><input id="${p}-cal" type="number" inputmode="numeric" min="0" step="1" placeholder="0" aria-label="Calories in kcal"><span style="align-self:center">kcal</span></div></div>
-<div class="fc"><h3>⚖️ Weight</h3><div class="st"><input id="${p}-wt" type="number" inputmode="decimal" min="0" step="0.1" placeholder="0.0" aria-label="Weight in kg"><span style="align-self:center">kg</span></div></div>
-<div class="fc wide"><h3>📝 Daily note</h3><textarea id="${p}-notes" placeholder="What did I accomplish today?" aria-label="Daily note"></textarea></div></div>`;
+const F=p=>`<div class="tgrid f" data-p="${p}">
+<section class="tgrp" aria-label="Career"><header class="tgh"><span class="tgi" aria-hidden="true">💼</span><div><h3>CAREER</h3><small>Career execution</small></div></header>
+ <div class="tgb"><div class="mt w"><div class="ml">📩 Job applications</div><div class="st"><button type="button" class="rb" data-a="apps:-1" aria-label="Decrease applications">−</button><input id="${p}-apps" type="number" inputmode="numeric" min="0" step="1" placeholder="0" aria-label="Applications today"><button type="button" class="rb" data-a="apps:1" aria-label="Increase applications">+</button></div><div class="q">${[10,20,30,40,50].map(n=>`<button type="button" data-a="apps:${n}">+${n}</button>`).join('')}</div></div></div></section>
+<section class="tgrp" aria-label="Learning"><header class="tgh"><span class="tgi" aria-hidden="true">💻</span><div><h3>LEARNING</h3><small>Skill building</small></div></header>
+ <div class="tgb c2"><div class="mt"><div class="ml">☕ Java</div><label class="ck"><input type="checkbox" id="${p}-javaC"> Completed today</label><label class="l" for="${p}-javaH">Study hours</label><input id="${p}-javaH" type="number" inputmode="decimal" min="0" step="0.5" placeholder="0"></div>
+ <div class="mt"><div class="ml">🧠 DSA</div><label class="ck"><input type="checkbox" id="${p}-dsaC"> Completed today</label><label class="l" for="${p}-dsaN">Problems solved</label><input id="${p}-dsaN" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></div></div></section>
+<section class="tgrp" aria-label="Health"><header class="tgh"><span class="tgi" aria-hidden="true">🏃</span><div><h3>HEALTH</h3><small>Daily wellbeing</small></div></header>
+ <div class="tgb c2"><div class="mt"><div class="ml">🏃 Exercise</div><label class="ck"><input type="checkbox" id="${p}-exC"> Completed today</label></div>
+ <div class="mt"><div class="ml">👣 Steps</div><input id="${p}-steps" type="number" inputmode="numeric" min="0" step="1" placeholder="0" aria-label="Steps (optional)"></div>
+ <div class="mt"><div class="ml">🔥 Calories</div><div class="st"><input id="${p}-cal" type="number" inputmode="numeric" min="0" step="1" placeholder="0" aria-label="Calories in kcal"><span>kcal</span></div></div>
+ <div class="mt"><div class="ml">⚖️ Weight</div><div class="st"><input id="${p}-wt" type="number" inputmode="decimal" min="0" step="0.1" placeholder="0.0" aria-label="Weight in kg"><span>kg</span></div></div></div></section>
+<section class="tgrp" aria-label="Notes"><header class="tgh"><span class="tgi" aria-hidden="true">📝</span><div><h3>NOTES</h3><small>Daily reflection</small></div></header>
+ <div class="tgb tn1"><textarea id="${p}-notes" placeholder="What did I accomplish today?" aria-label="Daily note"></textarea></div></section></div>`;
 const g=(p,i)=>document.getElementById(p+'-'+i);
 const readF=p=>normE({apps:g(p,'apps').value,dsaCompleted:g(p,'dsaC').checked,dsaProblems:g(p,'dsaN').value,javaCompleted:g(p,'javaC').checked,javaHours:g(p,'javaH').value,exerciseCompleted:g(p,'exC').checked,steps:g(p,'steps').value,calories:g(p,'cal').value,weight:g(p,'wt').value,notes:g(p,'notes').value});
 function fillF(p,e){e=normE(e||{});const s=(i,v)=>g(p,i).value=v||'';s('apps',e.apps);s('dsaN',e.dsaProblems);s('javaH',e.javaHours);s('steps',e.steps);s('cal',e.calories);s('wt',e.weight);s('notes',e.notes);g(p,'dsaC').checked=e.dsaCompleted;g(p,'javaC').checked=e.javaCompleted;g(p,'exC').checked=e.exerciseCompleted}
@@ -219,7 +297,7 @@ function renderTop(){const S=streaks(),M=mission(),t=TD(),te=db.entries[t],tc=!!
  const center=all?`<b style="font-size:48px">🎉</b><span>MISSION COMPLETE</span><span>${MD} / ${MD}</span>`:`<span>${dl}</span><b id="pct">${ringFirst?0:pc}%</b><span>${M.done} / ${MD} COMPLETE</span>`;
  const first=ringFirst;ringFirst=false;
  $('#top').innerHTML=`<div class="hw"><div class="ring" role="img" aria-label="${M.done} of ${MD} mission days completed, ${pc} percent"><svg viewBox="0 0 200 200"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--ac)"/><stop offset="1" style="stop-color:var(--full)"/></linearGradient></defs><circle class="rt" cx="100" cy="100" r="88"/><circle id="arc" class="arc" cx="100" cy="100" r="88" transform="rotate(-90 100 100)" stroke-dasharray="${C}" stroke-dashoffset="${first?C:C*(1-M.pct/100)}" style="${M.done?'':'opacity:0'}"/></svg><div class="rc">${center}</div></div>
- <div class="hi"><div><span class="badge">${status}</span> <span class="sub" style="font-weight:600;margin-left:6px">LAST PUSH OF 2026</span></div>
+ <div class="hi"><div><span class="badge">${status}</span> <span class="sub" style="font-weight:600;margin-left:6px">LAST PUSH OF ${P(M.end).getFullYear()}</span></div>
  <p class="sub">${MD} days. One final push. Show up every day.</p>
  ${M.dn===MD&&!all?`<div class="fin">⚡ FINAL DAY · DAY ${MD} / ${MD}<br>TODAY IS THE LAST DAY.</div>`:''}
  <div class="hs2"><div><b>🔥 ${M.done}</b><span class="sub">DAYS COMPLETED</span></div><div class="left"><b>⏳ ${M.rem}</b><span class="sub">DAYS REMAINING</span></div></div>
@@ -243,14 +321,14 @@ function renderMonth(){const es=me(),ws=es.filter(([,e])=>e.weight>0),cs=es.filt
  let w;if(ws.length>=2){const a=ws[0][1].weight,b=ws[ws.length-1][1].weight,d=r1(b-a);w=mc('⚖️','WEIGHT CHANGE',(d>0?'+':'')+d+' kg',`Starting ${r1(a)} kg · Current ${r1(b)} kg`)}else w=mc('⚖️','WEIGHT CHANGE','No sufficient data.',ws.length?`Only one weigh-in: ${r1(ws[0][1].weight)} kg`:'');
  $('#ms').innerHTML=mc('📩','APPLICATIONS',sum(es,e=>e.apps))+mc('💻','DSA PROBLEMS',sum(es,e=>e.dsaProblems))+mc('☕','JAVA STUDY',r1(sum(es,e=>e.javaHours))+' hours')+mc('🏃','EXERCISE',es.filter(([,e])=>e.exerciseCompleted).length+' days')+mc('🔥','AVERAGE CALORIES',cs.length?Math.round(sum(cs,e=>e.calories)/cs.length)+' kcal':'No data yet')+w}
 function renderTargets(){const es=me(),t=db.targets[vm]||DEF,R=[['apps','📩 Applications',sum(es,e=>e.apps),''],['dsa','💻 DSA',sum(es,e=>e.dsaProblems),' problems'],['java','☕ Java',r1(sum(es,e=>e.javaHours)),' hours'],['ex','🏃 Exercise',es.filter(([,e])=>e.exerciseCompleted).length,' days']];
- $('#tg').innerHTML=R.map(([k,l,v,u])=>{const p=t[k]>0?Math.min(100,v/t[k]*100):0;return`<div class="tr"><div class="h"><strong>${l}</strong><label>Target <input type="number" min="0" step="1" data-t="${k}" value="${t[k]}" aria-label="${l} target for ${mlab(vm)}"></label></div><div class="pb g" role="progressbar" aria-valuenow="${Math.round(p)}" aria-valuemin="0" aria-valuemax="100" aria-label="${l}"><i style="width:${p}%"></i></div><small class="sub">${v} / ${t[k]}${u} (${Math.round(p)}%)</small></div>`}).join('')}
+ $('#tg').innerHTML=R.map(([k,l,v,u])=>{const p=t[k]>0?Math.min(100,v/t[k]*100):0;return`<div class="tr"><div class="h"><strong>${l}</strong><label>Target <input type="number" min="0" step="1" data-t="${k}" value="${t[k]}" aria-label="${l} target for ${mlab(vm)}"></label></div><div class="pb g" role="progressbar" aria-valuenow="${Math.round(p)}" aria-valuemin="0" aria-valuemax="100" aria-label="${l}"><i style="width:${p}%"></i></div><small class="sub">${v} / ${t[k]}${u} · ${r1(Math.max(0,t[k]-v))}${u} left · ${Math.round(p)}%</small></div>`}).join('')}
 $('#tg').addEventListener('change',e=>{const k=e.target.dataset.t;if(!k)return;db.targets[vm]={...(db.targets[vm]||DEF),[k]:num(e.target.value)};save();renderTargets()});
 function renderCharts(){const es=me(),pts=es.filter(([,e])=>e.weight>0);
  if(!pts.length)$('#wt').innerHTML='<p class="sub">No weight data yet.</p>';else{const w=600,h=200,pl=44,pr=14,pt=14,pb=28,ws=pts.map(p=>p[1].weight),mn=Math.min(...ws),mx=Math.max(...ws),x=i=>pts.length>1?pl+i*(w-pl-pr)/(pts.length-1):(w+pl)/2,y=v=>mx===mn?(pt+h-pb)/2:pt+(mx-v)/(mx-mn)*(h-pt-pb);
-  $('#wt').innerHTML=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Weight trend"><text x="4" y="${y(mx)+4}">${r1(mx)}</text><text x="4" y="${y(mn)+4}">${r1(mn)}</text><line x1="${pl}" x2="${w-pr}" y1="${h-pb+6}" y2="${h-pb+6}" stroke="var(--b)"/><polyline class="ln" points="${pts.map((p,i)=>x(i)+','+y(p[1].weight)).join(' ')}"/>${pts.map((p,i)=>`<circle class="dot" cx="${x(i)}" cy="${y(p[1].weight)}" r="4"><title>${fmt(p[0])}: ${r1(p[1].weight)} kg</title></circle>`).join('')}<text x="${pl}" y="${h-4}">${P(pts[0][0]).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text><text x="${w-pr}" y="${h-4}" text-anchor="end">${P(pts[pts.length-1][0]).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text></svg>`}
+  $('#wt').innerHTML=`<div class="sg" style="margin:0 0 12px"><div><span class="sub">Starting</span><b>${r1(ws[0])} kg</b></div><div><span class="sub">Current</span><b>${r1(ws[ws.length-1])} kg</b></div><div><span class="sub">Change</span><b>${ws[ws.length-1]>ws[0]?'▲ +':ws[ws.length-1]<ws[0]?'▼ ':'＝ '}${r1(ws[ws.length-1]-ws[0])} kg</b></div></div><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Weight trend"><text x="4" y="${y(mx)+4}">${r1(mx)}</text><text x="4" y="${y(mn)+4}">${r1(mn)}</text><line x1="${pl}" x2="${w-pr}" y1="${h-pb+6}" y2="${h-pb+6}" stroke="var(--b)"/><polyline class="ln" points="${pts.map((p,i)=>x(i)+','+y(p[1].weight)).join(' ')}"/>${pts.map((p,i)=>`<circle class="dot" cx="${x(i)}" cy="${y(p[1].weight)}" r="4"><title>${fmt(p[0])}: ${r1(p[1].weight)} kg</title></circle>`).join('')}<text x="${pl}" y="${h-4}">${P(pts[0][0]).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text><text x="${w-pr}" y="${h-4}" text-anchor="end">${P(pts[pts.length-1][0]).toLocaleDateString('en-US',{month:'short',day:'numeric'})}</text></svg>`}
  const[yy,mm]=vm.split('-').map(Number),n=new Date(yy,mm,0).getDate(),t=TD(),mxA=Math.max(1,...es.map(([,e])=>e.apps)),act=es.filter(([,e])=>e.apps>0),tot=sum(es,e=>e.apps);let b='',a='';
  for(let d=1;d<=n;d++){const k=`${vm}-${pad(d)}`,v=(db.entries[k]||{}).apps||0;b+=`<div class="${v?'':'z'}" style="height:${v?Math.max(4,v/mxA*100):2}%" title="${fmt(k)}: ${v} applications"></div>`;a+=`<span>${d===1||d%5===0?d:''}</span>`}
- $('#ap').innerHTML=`<div class="bars" role="img" aria-label="Applications per day">${b}</div><div class="ax">${a}</div><div class="sg"><div><span class="sub">Total applications</span><b>${tot}</b></div><div><span class="sub">Avg / active day</span><b>${act.length?r1(tot/act.length):0}</b></div><div><span class="sub">Highest in one day</span><b>${act.length?mxA:0}</b></div></div>`}
+ const tA=(db.targets[vm]||DEF).apps,pA=tA>0?Math.min(100,tot/tA*100):0;$('#ap').innerHTML=`<div class="big"><b>${tot}</b> <span class="sub">/ ${tA} applications this month</span><div class="pb g" role="progressbar" aria-valuenow="${Math.round(pA)}" aria-valuemin="0" aria-valuemax="100" aria-label="Applications progress"><i style="width:${pA}%"></i></div><small class="sub">${Math.max(0,tA-tot)} remaining · ${Math.round(pA)}%</small></div><div class="bars" role="img" aria-label="Applications per day">${b}</div><div class="ax">${a}</div><div class="sg"><div><span class="sub">Total applications</span><b>${tot}</b></div><div><span class="sub">Avg / active day</span><b>${act.length?r1(tot/act.length):0}</b></div><div><span class="sub">Highest in one day</span><b>${act.length?mxA:0}</b></div></div>`}
 function renderHist(){const[y,m]=vm.split('-').map(Number),n=new Date(y,m,0).getDate(),t=TD(),ts=trackStart(),F=[['all','All'],['full','Full Days'],['part','Partial Days'],['miss','Missed Days']];
  $('#fl').innerHTML=F.map(([k,l])=>`<button data-f="${k}" aria-pressed="${hf===k}">${l}</button>`).join('');let h='';
  for(let d=n;d>=1;d--){const k=`${vm}-${pad(d)}`;if(k>t)continue;const e=db.entries[k];if(!e&&k<ts)continue;const s=st(e);if(hf!=='all'&&hf!==s)continue;
@@ -264,7 +342,7 @@ function renderMiles(){const S=streaks(),v=Object.values(db.entries),sm=f=>v.red
  [D>=50,'💻 50 DSA Problems'],[D>=100,'💻 100 DSA Problems'],[D>=200,'💻 200 DSA Problems'],
  [J>=50,'☕ 50 Java Hours'],[J>=100,'☕ 100 Java Hours'],[X>=30,'🏃 30 Exercise Days'],[T>=10,'✅ 10 Tasks Done'],[T>=50,'✅ 50 Tasks Done']];
  const got=L.filter(x=>x[0]);
- $('#ml').innerHTML=(got.length?got.map(x=>`<span>${x[1]}</span>`).join(''):'<p class="sub">Your first badge appears at a 3-day streak or 100 applications.</p>')+`<p class="sub" style="flex:1 1 100%;margin-top:4px">${got.length} of ${L.length} badges earned</p>`}
+ $('#ml').innerHTML=L.map(x=>`<div class="ach ${x[0]?'on':'lk'}"><span class="ai">${x[0]?'🏆':'🔒'}</span><div><b>${x[1]}</b><small>${x[0]?'UNLOCKED':'LOCKED'}</small></div></div>`).join('')+`<p class="sub">${got.length} of ${L.length} badges earned</p>`}
 function render(){renderTop();renderStatus();renderCal();renderMonth();renderTargets();renderCharts();renderHist();renderMiles();renderTasks();renderExtra()}
 /* actions */
 function saveToday(){db.entries[TD()]=readF('t');if(save()){render();toast("✅ Today's progress saved!")}}
@@ -350,7 +428,7 @@ function renderWeek(){const td=TD(),ws=addD(td,-((P(td).getDay()+6)%7)),A=wsum(w
  const R=[['📩 Applications','apps'],['💻 DSA problems','dsa'],['☕ Java hours','java'],['🏃 Exercise days','ex'],['✅ Active days','act'],['📋 Tasks done','tk']];
  $('#wk').innerHTML=`<p class="sub" style="margin-bottom:8px">This week: ${fS(ws)} – ${fS(addD(ws,6))} (Mon–Sun)</p><div class="calw"><table class="wt"><tr><th></th><th>This week</th><th>Last week</th><th>Change</th></tr>${R.map(([l,k])=>{const d=r1(A[k]-B[k]);return`<tr><td>${l}</td><td><b>${r1(A[k])}</b></td><td>${r1(B[k])}</td><td>${d>0?'▲ +'+d:d<0?'▼ '+d:'＝ 0'}</td></tr>`}).join('')}</table></div>`}
 function renderBackup(){const lb=db.settings.lastBackup||0,days=lb?Math.floor((Date.now()-lb)/864e5):0,has=Object.keys(db.entries).length||db.tasks.length,need=has&&(!lb||days>=7);
- $('#bk').hidden=!need;$('#bk').innerHTML=need?`<span>💾 ${lb?`Last backup: ${days} days ago.`:'No backup yet.'} Your data lives only in this browser.</span><button id="bkb" class="pri">Export now</button>`:'';
+ $('#bk').hidden=!need;$('#bk').innerHTML=need?`<div><strong>💾 BACKUP REMINDER</strong><div class="sub">${lb?`Last backup: ${days} days ago`:'No backup yet'} · Keep a manual JSON backup for extra protection.</div></div><button id="bkb" class="pri">Export now</button>`:'';
  $('#lbt').textContent=lb?'💾 Last backup: '+new Date(lb).toLocaleString('en-US',{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'}):'💾 No backup yet — use Export Data.'}
 $('#bk').onclick=e=>{if(e.target.id==='bkb')doExport()};
 function renderExtra(){renderFull();renderWeek();renderBackup()}
@@ -367,7 +445,7 @@ if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.
 var FB=null,pushT=null;const SK='habit102sync';
 function syncMeta(){try{return JSON.parse(localStorage.getItem(SK))||{}}catch(e){return{}}}
 function setMeta(m){try{localStorage.setItem(SK,JSON.stringify(m))}catch(e){}}
-const setSync=m=>{$('#sync').textContent=m};
+const setSync=m=>{$('#sync').textContent=m;const k=m.includes('⚠️')?'err':/Connecting|…/.test(m)?'busy':/Synced|Connected/.test(m)?'ok':'';$('#sdot').className='sd '+k;const u=FB&&FB.user;$('#sst').textContent=u?'● Connected to '+(u.email||'Google account'):'Not connected';$('#sdesc').textContent=u?'Your tracker syncs to this Google account.':'Your data is currently stored locally on this device.'};
 const hasData=()=>Object.keys(db.entries).length>0||db.tasks.length>0;
 function queuePush(){if(!FB||!FB.user||!FB.ref)return;clearTimeout(pushT);pushT=setTimeout(push,1500)}
 async function push(){try{await FB.fs.setDoc(FB.ref,{data:JSON.stringify(db),t:syncMeta().t||Date.now()});setSync('☁️ Synced at '+new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}))}catch(e){setSync('⚠️ Sync failed: '+(e.code||e.message))}}
