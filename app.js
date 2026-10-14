@@ -229,10 +229,10 @@ function onRemote(snap){if(snap.metadata&&snap.metadata.hasPendingWrites)return;
  if(m.uid!==uid){if(hasData()&&!confirm("The cloud already has saved data for this account.\n\nOK = use the cloud data on this device (replaces what is here).\nCancel = keep this device's data and overwrite the cloud.")){setMeta({uid,t:Date.now()});push();return}applyRemote(r);return}
  if(r.t>(m.t||0))applyRemote(r);else if((m.t||0)>r.t)push();else setSync('☁️ Synced')}
 async function initSync(){const hide=()=>{$('#sin').hidden=true;$('#sout').hidden=true};
- if(!FB_CONFIG){hide();return setSync('☁️ Sync is not set up yet — data stays on this device.')}
+ if(!firebaseConfig){hide();return setSync('☁️ Sync is not set up yet — data stays on this device.')}
  if(!location.protocol.startsWith('http')){hide();return setSync('☁️ Sync works only from the https web address, not from a local file.')}
  try{const B='https://www.gstatic.com/firebasejs/10.12.2/',[a,au,fs]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);
-  const app=a.initializeApp(FB_CONFIG);FB={au,fs,auth:au.getAuth(app),db:fs.getFirestore(app),user:null,ref:null,unsub:null};
+  const app=a.initializeApp(firebaseConfig);FB={au,fs,auth:au.getAuth(app),db:fs.getFirestore(app),user:null,ref:null,unsub:null};
   au.onAuthStateChanged(FB.auth,u=>{FB.user=u;if(FB.unsub){FB.unsub();FB.unsub=null}$('#sin').hidden=!!u;$('#sout').hidden=!u;
    if(u){FB.ref=fs.doc(FB.db,'users',u.uid);setSync('☁️ Connecting as '+(u.email||'you')+'…');FB.unsub=fs.onSnapshot(FB.ref,onRemote,e=>setSync('⚠️ '+(e.code||e.message)))}else{FB.ref=null;setSync('☁️ Not signed in — data stays on this device.')}})}
  catch(e){hide();setSync('⚠️ Could not load Firebase (are you offline?)')}}
