@@ -45,14 +45,117 @@
  <div class="fl" id="fl"></div><div id="hs"></div></section>
 <section class="card"><h2>🏆 MILESTONES</h2><div id="ml" class="bd"></div></section>
 <section class="card quote"><p>DON'T GIVE UP.<br>ADJUST, BUT DON'T QUIT.</p><p>ONE BAD DAY IS NOT<br>A FAILED LIFE.</p><p>KEEP GOING.<br>YOUR TIME WILL COME.</p></section>
-<section class="card" aria-labelledby="sth"><h2 id="sth">⚙️ SETTINGS</h2><div class="sgrid">
- <div class="grpc"><h3>🎯 Mission</h3><label for="sd">Mission start date</label><input type="date" id="sd"><label for="sdays">Mission length (days)</label><input type="number" id="sdays" min="7" max="365" step="1"><label for="sname">Mission name (optional)</label><input type="text" id="sname" maxlength="40" placeholder="MY 90-DAY MISSION"></div>
- <div class="grpc"><h3>🎯 Daily goals</h3><label for="dt-apps">Applications per day</label><input type="number" id="dt-apps" min="0" step="1"><label for="dt-dsa">DSA problems per day</label><input type="number" id="dt-dsa" min="0" step="1"><label for="dt-java">Java hours per day</label><input type="number" id="dt-java" min="0" step="0.5"><p class="sub">Leave blank or 0 for no goal.</p></div>
- <div class="grpc"><h3>🎨 Appearance</h3><label for="th2">Theme</label><select id="th2"><option value="light">Light</option><option value="dark">Dark</option><option value="pink">Light Pink</option><option value="sky">Sky Blue</option><option value="system">System</option></select><p class="sub">You can also switch themes from the header.</p></div>
- <div class="grpc"><h3>💾 Data &amp; Backup</h3><p id="lbt" class="sub"></p><div class="btns"><button id="ex" class="pri">📤 Export Data</button><button id="im">📥 Import Data</button><input type="file" id="imp" accept=".json,application/json" hidden><button id="rp">📄 Mission Report</button></div><p class="sub">☁️ When cloud sync is enabled, your tracker is synced to your Google account. Export a manual JSON backup periodically for extra protection.</p></div>
- <div class="grpc"><h3>☁️ Cloud Sync</h3><div class="sy"><span id="sdot" class="sd"></span><strong id="sst">Not connected</strong></div><p class="sub" id="sdesc">Your data is currently stored locally on this device.</p><div class="btns"><button id="sin" class="pri" hidden>Sign in with Google</button><button id="sout" hidden>Sign out</button></div><p id="sync" class="sub" role="status" aria-live="polite"></p></div>
- <div class="grpc danger" style="grid-column:1/-1"><h3>⚠️ Danger zone</h3><p class="sub">Erases all records, tasks and settings. With cloud sync on, the cleared state also syncs to your account. Export a backup first.</p><div class="btns"><button id="clr" class="dng">🗑️ Clear All Data</button></div></div>
-</div></section>
+<section class="card settings-card" aria-labelledby="sth">
+  <button
+    type="button"
+    id="settingsToggle"
+    class="settings-toggle"
+    aria-expanded="false"
+    aria-controls="settingsContent"
+  >
+    <span>⚙️ SETTINGS</span>
+    <span id="settingsArrow">▼</span>
+  </button>
+
+  <div id="settingsContent" class="settings-content" hidden>
+    <div class="sgrid">
+
+      <div class="grpc">
+        <h3>🎯 Mission</h3>
+        <label for="sd">Mission start date</label>
+        <input type="date" id="sd">
+
+        <label for="sdays">Mission length (days)</label>
+        <input type="number" id="sdays" min="7" max="365" step="1">
+
+        <label for="sname">Mission name (optional)</label>
+        <input type="text" id="sname" maxlength="40" placeholder="MY 90-DAY MISSION">
+      </div>
+
+      <div class="grpc">
+        <h3>🎯 Daily goals</h3>
+        <label for="dt-apps">Applications per day</label>
+        <input type="number" id="dt-apps" min="0" step="1">
+
+        <label for="dt-dsa">DSA problems per day</label>
+        <input type="number" id="dt-dsa" min="0" step="1">
+
+        <label for="dt-java">Java hours per day</label>
+        <input type="number" id="dt-java" min="0" step="0.5">
+
+        <p class="sub">Leave blank or 0 for no goal.</p>
+      </div>
+
+      <div class="grpc">
+        <h3>🎨 Appearance</h3>
+        <label for="th2">Theme</label>
+        <select id="th2">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="pink">Light Pink</option>
+          <option value="sky">Sky Blue</option>
+          <option value="system">System</option>
+        </select>
+        <p class="sub">You can also switch themes from the header.</p>
+      </div>
+
+      <div class="grpc">
+        <h3>💾 Data &amp; Backup</h3>
+        <p id="lbt" class="sub"></p>
+
+        <div class="btns">
+          <button id="ex" class="pri">📤 Export Data</button>
+          <button id="im">📥 Import Data</button>
+          <input type="file" id="imp" accept=".json,application/json" hidden>
+          <button id="rp">📄 Mission Report</button>
+        </div>
+
+        <p class="sub">
+          ☁️ When cloud sync is enabled, your tracker is synced to your Google account.
+          Export a manual JSON backup periodically for extra protection.
+        </p>
+      </div>
+
+      <div class="grpc">
+        <h3>☁️ Cloud Sync</h3>
+
+        <div class="sy">
+          <span id="sdot" class="sd"></span>
+          <strong id="sst">Not connected</strong>
+        </div>
+
+        <p class="sub" id="sdesc">
+          Your data is currently stored locally on this device.
+        </p>
+
+        <div class="btns">
+          <button id="sin" class="pri" hidden>Sign in with Google</button>
+          <button id="sout" hidden>Sign out</button>
+        </div>
+
+        <p id="sync" class="sub" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="grpc danger" style="grid-column:1/-1">
+        <h3>⚠️ Danger zone</h3>
+
+        <p class="sub">
+          Erases all records, tasks and settings. With cloud sync on,
+          the cleared state also syncs to your account. Export a backup first.
+        </p>
+
+        <div class="btns">
+          <button id="clr" class="dng">🗑️ Clear All Data</button>
+        </div>
+      </div>
+
+    </div>
+
+    <button type="button" id="settingsClose" class="settings-close">
+      ▲ Hide Settings
+    </button>
+  </div>
+</section>
 </main>
 <dialog id="dlg" aria-label="Details"><div id="dbody"></div></dialog>
 <dialog id="cf" role="alertdialog" aria-label="Please confirm"><p id="cfm"></p><div class="ar"><button id="cfno">Cancel</button><button id="cfok" class="dng"></button></div></dialog>

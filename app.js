@@ -135,6 +135,44 @@ function theme(){const t=db.settings.theme;document.documentElement.dataset.them
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);
 $('#th2').onchange=$('#th3').onchange=e=>{db.settings.theme=e.target.value;save();applySettings()};
 $('#sd').onchange=e=>{if(!e.target.value)return;db.settings.start=e.target.value;save();render()};
+/* ================================
+   COLLAPSIBLE SETTINGS
+   ================================ */
+
+const settingsToggle = document.getElementById('settingsToggle');
+const settingsContent = document.getElementById('settingsContent');
+const settingsArrow = document.getElementById('settingsArrow');
+const settingsClose = document.getElementById('settingsClose');
+
+function toggleSettings(show) {
+  if (!settingsContent || !settingsToggle) return;
+
+  settingsContent.hidden = !show;
+  settingsToggle.setAttribute('aria-expanded', String(show));
+
+  if (settingsArrow) {
+    settingsArrow.textContent = show ? '▲' : '▼';
+  }
+}
+
+if (settingsToggle) {
+  settingsToggle.addEventListener('click', () => {
+    toggleSettings(settingsContent.hidden);
+  });
+}
+
+if (settingsClose) {
+  settingsClose.addEventListener('click', () => {
+    toggleSettings(false);
+
+    if (settingsToggle) {
+      settingsToggle.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  });
+}
 function doExport(){db.settings.lastBackup=Date.now();save();renderBackup();const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify({app:'habit102',version:1,exportedAt:new Date().toISOString(),...db},null,2)],{type:'application/json'}));a.download='habit-tracker-'+TD()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1e3);toast('📤 Data exported')}
 $('#ex').onclick=doExport;
 $('#sdays').onchange=e=>{const d=Math.round(+e.target.value);if(!(d>=7&&d<=365)){toast('⚠️ Choose 7 to 365 days',1);e.target.value=MD;return}db.settings.days=d;save();applySettings();render()};

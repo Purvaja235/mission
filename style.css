@@ -169,3 +169,74 @@ dialog .tgrid{grid-template-columns:1fr}dialog .tgrp{min-height:0}
 .skip{position:absolute;left:8px;top:-60px;background:var(--ac);color:#fff;padding:10px 16px;border-radius:10px;z-index:99;text-decoration:none;font-weight:700}.skip:focus{top:8px}
 /* contrast fixes: dark theme uses dark text on its bright status colours */
 [data-theme=dark] .cell.full,[data-theme=dark] .cell.miss,[data-theme=dark] .chips .od,[data-theme=dark] .save,[data-theme=dark] .skip{color:#0b0f1a}
+/* ================================
+   COLLAPSIBLE SETTINGS
+   ================================ */
+
+.settings-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.settings-toggle {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: inherit;
+  font-weight: 800;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.settings-toggle:hover {
+  background: rgba(255,255,255,.04);
+}
+
+.settings-toggle:focus-visible,
+.settings-close:focus-visible {
+  outline: 2px solid var(--ac);
+  outline-offset: -2px;
+}
+
+#settingsArrow {
+  font-size: 14px;
+  transition: transform .2s ease;
+}
+
+.settings-content {
+  padding: 0 20px 20px;
+}
+
+.settings-close {
+  margin-top: 18px;
+  width: 100%;
+  border: 1px solid var(--bd);
+  background: transparent;
+  color: inherit;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.settings-close:hover {
+  background: rgba(255,255,255,.04);
+}
+
+@media(max-width:720px) {
+  .settings-toggle {
+    padding: 18px 16px;
+    font-size: 18px;
+  }
+
+  .settings-content {
+    padding: 0 16px 16px;
+  }
+}
