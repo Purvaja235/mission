@@ -210,7 +210,7 @@ dialog .tgrid{grid-template-columns:1fr}dialog .tgrp{min-height:0}
 }
 
 .settings-content {
-  padding: 0 20px 20px;
+  padding: 0 20px 6px;
 }
 
 .settings-close {
@@ -239,4 +239,105 @@ dialog .tgrid{grid-template-columns:1fr}dialog .tgrp{min-height:0}
   .settings-content {
     padding: 0 16px 16px;
   }
+}
+/* ===== WEEKLY REVIEW HISTORY ===== */
+
+.review-history-controls {
+  margin-top: 14px;
+}
+
+.review-history-btn {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--b);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.review-history-btn:hover {
+  background: rgba(255,255,255,.04);
+}
+
+.review-history {
+  margin-top: 18px;
+  border-top: 1px solid var(--b);
+  padding-top: 18px;
+}
+
+.review-history h3 {
+  margin: 0 0 12px;
+}
+
+.review-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.review-filter {
+  padding: 8px 12px;
+  border: 1px solid var(--b);
+  background: transparent;
+  color: inherit;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.review-filter:hover {
+  background: rgba(255,255,255,.04);
+}
+
+.review-filter.active {
+  background: var(--ac);
+  border-color: var(--ac);
+  color: #fff;
+}
+
+.review-history-item {
+  margin-bottom: 10px;
+}
+
+.review-delete {
+  margin-top: 10px;
+  padding: 7px 11px;
+  font-size: 13px;
+}
+
+.review-history-close {
+  width: 100%;
+  margin-top: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--b);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.review-history-close:hover {
+  background: rgba(255,255,255,.04);
+}
+
+@media(max-width:720px) {
+  .review-filters {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .review-filter {
+    width: 100%;
+  }
+}
+
+.review-autosave {
+  text-align: center;
+  margin: 10px 0 14px;
+  font-size: 13px;
 }

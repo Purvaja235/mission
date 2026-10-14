@@ -289,11 +289,210 @@ function renderIns(){const[y,m]=vm.split('-').map(Number),n=new Date(y,m,0).getD
  for(let k=ts;k<=td;k=addD(k,1)){const e=db.entries[k];if(isRest(e))continue;const i=(P(k).getDay()+6)%7;W[i].n++;W[i].s+=e?core(e).filter(Boolean).length:0}
  const av=W.map(x=>x.n?x.s/x.n:0),mx=Math.max(...av),bi=mx>0?av.indexOf(mx):-1;
  $('#ins').innerHTML=`<div class="tg"><div>${dayBars('dsaProblems','💻 DSA problems per day','problems')}</div><div>${dayBars('javaHours','☕ Java hours per day','hours')}</div></div><h3 style="margin-top:18px">Best weekday</h3>${bi<0?'<p class="sub">No data yet.</p>':`<p class="sub">🏆 <b>${N[bi]}</b> is your strongest day — ${r1(mx)} of 4 core habits on average (rest days excluded).</p><div class="bars" style="height:90px" role="img" aria-label="Average core habits by weekday">${av.map((v,i)=>`<div class="${i===bi?'':'wkd'}" style="height:${Math.max(4,v/4*100)}%" title="${N[i]}: ${r1(v)} / 4"></div>`).join('')}</div><div class="ax">${N.map(x=>`<span>${x.slice(0,3)}</span>`).join('')}</div>`}`}
-function renderReview(){const box=$('#rv');if(document.activeElement&&box.contains(document.activeElement)&&document.activeElement.tagName==='TEXTAREA')return;
- const td=TD(),k=addD(td,-((P(td).getDay()+6)%7)),R=db.reviews||{},r=R[k]||{well:'',change:''},sun=P(td).getDay()===0,past=Object.keys(R).filter(x=>x!==k).sort().reverse().slice(0,4);
- box.innerHTML=`${sun?'<div class="bk" style="margin-bottom:12px"><strong>🗓 It\'s Sunday — time for your weekly review.</strong></div>':''}<p class="sub" style="margin-bottom:10px">Week of ${fS(k)} – ${fS(addD(k,6))}</p><div class="tg"><label class="rl">What went well<textarea id="rv-w" maxlength="2000" placeholder="Wins, progress, things that worked…">${esc(r.well)}</textarea></label><label class="rl">What to change<textarea id="rv-c" maxlength="2000" placeholder="One or two adjustments for next week…">${esc(r.change)}</textarea></label></div><div class="ar"><button id="rvs" class="pri">Save review</button></div>${past.length?`<h3 style="margin-top:14px">Previous reviews</h3>${past.map(x=>`<div class="h1"><strong>Week of ${fS(x)}</strong><div>👍 ${esc(R[x].well)||'—'}</div><div>🔧 ${esc(R[x].change)||'—'}</div></div>`).join('')}`:''}`;
- $('#rvs').onclick=()=>{db.reviews=db.reviews||{};db.reviews[k]={well:$('#rv-w').value.trim().slice(0,2000),change:$('#rv-c').value.trim().slice(0,2000),t:Date.now()};if(save()){toast('✅ Weekly review saved');renderReview()}}}
+function renderReview(){
+  const box=$('#rv');
 
+  if(
+    document.activeElement &&
+    box.contains(document.activeElement) &&
+    document.activeElement.tagName==='TEXTAREA'
+  ) return;
+
+  const td=TD();
+  const k=addD(td,-((P(td).getDay()+6)%7));
+  const R=db.reviews||{};
+  const r=R[k]||{well:'',change:''};
+  const sun=P(td).getDay()===0;
+
+  box.innerHTML =
+  (sun
+    ? '<div class="bk" style="margin-bottom:12px"><strong>🗓 Sunday — time for your weekly review.</strong></div>'    : '') +
+
+    '<p class="sub" style="margin-bottom:10px">' +
+      'Week of '+fS(k)+' – '+fS(addD(k,6))+
+    '</p>' +
+
+    '<div class="tg">' +
+
+      '<label class="rl">' +
+        'What went well' +
+        '<textarea id="rv-w" maxlength="2000" placeholder="Wins, progress, things that worked…">'+
+          esc(r.well)+
+        '</textarea>' +
+      '</label>' +
+
+      '<label class="rl">' +
+        'What to change' +
+        '<textarea id="rv-c" maxlength="2000" placeholder="One or two adjustments for next week…">'+
+          esc(r.change)+
+        '</textarea>' +
+      '</label>' +
+
+    '</div>' +
+
+    '</div>' +
+
+'<p class="sub review-autosave">💾 Your review is saved automatically.</p>' +
+
+'<div class="review-history-controls">' +
+
+    '<div class="review-history-controls">' +
+      '<button id="reviewHistoryToggle" type="button" class="review-history-btn">' +
+        '📚 View Review History' +
+      '</button>' +
+    '</div>' +
+
+    '<div id="reviewHistory" class="review-history" hidden>' +
+
+      '<h3>📚 Review History</h3>' +
+
+      '<div class="review-filters">' +
+        '<button type="button" class="review-filter active" data-filter="all">All Reviews</button>' +
+        '<button type="button" class="review-filter" data-filter="current">Current Week</button>' +
+        '<button type="button" class="review-filter" data-filter="past">Past Reviews</button>' +
+      '</div>' +
+
+      '<div id="reviewHistoryList"></div>' +
+
+      '<button id="reviewHistoryClose" type="button" class="review-history-close">' +
+        '▲ Hide Review History' +
+      '</button>' +
+
+    '</div>';
+function autoSaveReview(){
+  db.reviews=db.reviews||{};
+
+  db.reviews[k]={
+    well:$('#rv-w').value.trim().slice(0,2000),
+    change:$('#rv-c').value.trim().slice(0,2000),
+    t:Date.now()
+  };
+
+  save();
+
+  const msg=document.querySelector('.review-autosave');
+
+  if(msg){
+    msg.textContent='💾 Saved automatically';
+    clearTimeout(window.reviewSaveTimer);
+
+    window.reviewSaveTimer=setTimeout(function(){
+      msg.textContent='💾 Your review is saved automatically.';
+    },1200);
+  }
+}
+
+$('#rv-w').addEventListener('input',autoSaveReview);
+$('#rv-c').addEventListener('input',autoSaveReview);
+
+  function renderHistory(filter){
+
+    const list=$('#reviewHistoryList');
+
+    if(!list) return;
+
+    const allDates=Object.keys(R).sort().reverse();
+
+    let dates=allDates;
+
+    if(filter==='current'){
+      dates=allDates.filter(function(x){
+        return x===k;
+      });
+    }
+
+    if(filter==='past'){
+      dates=allDates.filter(function(x){
+        return x!==k;
+      });
+    }
+
+    if(!dates.length){
+      list.innerHTML='<p class="sub">No reviews found.</p>';
+      return;
+    }
+
+    list.innerHTML=dates.map(function(x){
+
+      return (
+        '<div class="h1 review-history-item">' +
+
+          '<strong>Week of '+fS(x)+' – '+fS(addD(x,6))+'</strong>' +
+
+          '<div>👍 '+(esc(R[x].well)||'—')+'</div>' +
+
+          '<div>🔧 '+(esc(R[x].change)||'—')+'</div>' +
+
+          '<button type="button" class="dng review-delete" data-review="'+x+'">' +
+            '🗑️ Delete' +
+          '</button>' +
+
+        '</div>'
+      );
+
+    }).join('');
+
+    document.querySelectorAll('.review-delete').forEach(function(btn){
+
+      btn.onclick=function(){
+
+        const reviewDate=btn.dataset.review;
+
+        ask(
+          'Delete the weekly review for '+fS(reviewDate)+'?',
+          'Delete',
+          function(){
+
+            delete db.reviews[reviewDate];
+
+            if(save()){
+              toast('🗑️ Weekly review deleted');
+              renderReview();
+            }
+
+          }
+        );
+
+      };
+
+    });
+
+  }
+
+  $('#reviewHistoryToggle').onclick=function(){
+
+    $('#reviewHistory').hidden=false;
+    $('#reviewHistoryToggle').hidden=true;
+
+    renderHistory('all');
+
+  };
+
+  $('#reviewHistoryClose').onclick=function(){
+
+    $('#reviewHistory').hidden=true;
+    $('#reviewHistoryToggle').hidden=false;
+
+  };
+
+  document.querySelectorAll('.review-filter').forEach(function(btn){
+
+    btn.onclick=function(){
+
+      document.querySelectorAll('.review-filter')
+        .forEach(function(b){
+          b.classList.remove('active');
+        });
+
+      btn.classList.add('active');
+
+      renderHistory(btn.dataset.filter);
+
+    };
+
+  });
+
+}
 /* init */
 load();$('#tf').innerHTML=F('t');fillF('t',db.entries[TD()]);applySettings();render();
 setInterval(()=>{if($('#today').textContent!==new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'})){fillF('t',db.entries[TD()]);render()}},6e4);
