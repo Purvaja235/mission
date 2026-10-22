@@ -82,6 +82,7 @@ function renderTop(){const S=streaks(),M=mission(),t=TD(),te=db.entries[t],tc=!!
   const el=$('#pct');if(el){if(matchMedia('(prefers-reduced-motion:reduce)').matches)el.textContent=pc+'%';else{const t0=performance.now(),f=n=>{const p=Math.min(1,(n-t0)/900);el.textContent=Math.round(pc*(1-Math.pow(1-p,3)))+'%';if(p<1&&document.body.contains(el))requestAnimationFrame(f)};requestAnimationFrame(f)}}}}
 function tip(k,e){const d=fmt(k);return e?`${d}\nApplications: ${e.apps}\nDSA: ${e.dsaProblems} problems${e.dsaCompleted&&!e.dsaProblems?' (completed)':''}\nJava: ${r1(e.javaHours)} hours${e.javaCompleted&&!e.javaHours?' (completed)':''}\nExercise: ${e.exerciseCompleted?'Completed':'Not done'}\nCalories: ${e.calories||'–'}\nWeight: ${e.weight?r1(e.weight)+' kg':'–'}`:d+'\nNo record'}
 function renderCal(){const[y,m]=vm.split('-').map(Number),n=new Date(y,m,0).getDate(),lead=(new Date(y,m-1,1).getDay()+6)%7,t=TD(),ts=trackStart();
+$('#calMonth').textContent=mlab(vm);
  let h=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="wd">${d}</div>`).join('')+'<span></span>'.repeat(lead);
  for(let d=1;d<=n;d++){const k=`${vm}-${pad(d)}`,e=db.entries[k],s=st(e);let c,mk='',lb;
   if(k>t){c='fut';lb='Future'}else if(s!=='miss'){c=s;mk=s==='full'?'✓':'◐';lb=s==='full'?'Full day':'Partial day'}else if(isRest(e)){c='rest';mk='☾';lb='Rest day'}else if(k===t){c='t0';lb='Today, not started'}else if(k>=ts){c='miss';mk='✕';lb='Missed day'}else{c='none';lb='No record'}
@@ -122,7 +123,10 @@ function saveToday(){db.entries[TD()]=readF('t');if(save()){render();toast("✅ 
 $('#sv').onclick=saveToday;
 $('#go').onclick=()=>{$('#trk').scrollIntoView({behavior:'smooth'});g('t','apps').focus({preventScroll:true})};
 function chm(d){const[y,m]=vm.split('-').map(Number),n=new Date(y,m-1+d,1);vm=n.getFullYear()+'-'+pad(n.getMonth()+1);render()}
-$('#pm').onclick=()=>chm(-1);$('#nm').onclick=()=>chm(1);
+$('#pm').onclick=()=>chm(-1);
+$('#nm').onclick=()=>chm(1);
+$('#calPrev').onclick=()=>chm(-1);
+$('#calNext').onclick=()=>chm(1);
 function openDay(k){const e=db.entries[k];$('#dbody').innerHTML=`<h2>${fmt(k)}</h2>${e?`<div class="r" style="display:grid;gap:4px"><span>📩 ${e.apps} applications</span><span>💻 DSA: ${e.dsaProblems} problems${e.dsaCompleted?' (completed)':''}</span><span>☕ Java: ${r1(e.javaHours)} hours${e.javaCompleted?' (completed)':''}</span><span>🏃 Exercise: ${e.exerciseCompleted?'Completed':'Not done'}${e.steps?' · '+e.steps+' steps':''}</span><span>🔥 Calories: ${e.calories||'—'}</span><span>⚖️ Weight: ${e.weight?r1(e.weight)+' kg':'—'}</span>${e.notes?`<span class="note">📝 ${esc(e.notes)}</span>`:''}</div>`:'<p class="sub">No record for this day.</p>'}<div class="ar"><button id="dc">Close</button>${e?'<button id="dx" class="dng">Delete</button>':''}<button id="de" class="pri">${e?'Edit':'Add entry'}</button></div>`;
  $('#dc').onclick=()=>$('#dlg').close();$('#de').onclick=()=>editDay(k);if(e)$('#dx').onclick=()=>delDay(k);if(!$('#dlg').open)$('#dlg').showModal()}
 function editDay(k){$('#dbody').innerHTML=`<h2>Edit ${fmt(k)}</h2>${F('m')}<div class="ar"><button id="dc">Cancel</button><button id="dsv" class="pri">Save changes</button></div>`;fillF('m',db.entries[k]);

@@ -31,8 +31,31 @@
  <select id="tc" aria-label="Category filter"></select><select id="tp" aria-label="Priority filter"><option value="all">All priorities</option><option value="high">🔴 High</option><option value="medium">🟡 Medium</option><option value="low">🟢 Low</option></select>
  <select id="to" aria-label="Sort by"><option value="due-asc">Due date — earliest first</option><option value="due-desc">Due date — latest first</option><option value="pri">Priority — high to low</option><option value="added">Recently added</option><option value="comp">Recently completed</option><option value="alpha">Alphabetical</option></select></div>
  <h3 id="hp"></h3><div id="tpend"></div><button type="button" class="addbar" data-act="add">+ Add a task</button><h3 id="hd" style="margin-top:18px"></h3><div id="tdone"></div><div id="tst" style="margin-top:18px"></div></section>
-<section class="card"><h2>📅 MONTHLY CONTRIBUTION CALENDAR</h2><div class="calw"><div id="cal" class="cal"></div></div>
- <div class="leg"><span>Less</span><span><i style="background:var(--fut)"></i>Future / none</span><span><i style="background:var(--miss)"></i>Missed ✕</span><span><i style="background:var(--part)"></i>Partial ◐</span><span><i class="rst"></i>Rest ☾</span><span><i style="background:var(--full)"></i>Full ✓</span><span>More</span></div></section>
+<section class="card">
+  <div class="th month-cal-header">
+    <h2>📅 MONTHLY CONTRIBUTION CALENDAR</h2>
+
+    <div class="month-nav">
+      <button id="calPrev" type="button" aria-label="Previous month">←</button>
+      <strong id="calMonth"></strong>
+      <button id="calNext" type="button" aria-label="Next month">→</button>
+    </div>
+  </div>
+
+  <div class="calw">
+    <div id="cal" class="cal"></div>
+  </div>
+
+  <div class="leg">
+    <span>Less</span>
+    <span><i style="background:var(--fut)"></i>Future / none</span>
+    <span><i style="background:var(--miss)"></i>Missed ✕</span>
+    <span><i style="background:var(--part)"></i>Partial ◐</span>
+    <span><i class="rst"></i>Rest ☾</span>
+    <span><i style="background:var(--full)"></i>Full ✓</span>
+    <span>More</span>
+  </div>
+</section>
 <section class="card"><h2>🗓 FULL MISSION CALENDAR</h2><div id="fm"></div><div class="leg"><span><i style="background:var(--full)"></i>Completed ✓</span><span><i style="background:var(--miss)"></i>Missed ✕</span><span><i class="rst"></i>Rest ☾</span><span><i style="background:var(--fut)"></i>Upcoming / today</span></div></section>
 <section class="card"><h2 id="mh"></h2><div id="ms" class="mg"></div></section>
 <section class="card"><h2>📈 WEEKLY SUMMARY</h2><div id="wk"></div></section>
